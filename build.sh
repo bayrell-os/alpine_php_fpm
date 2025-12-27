@@ -6,14 +6,14 @@ BASE_PATH=`dirname $SCRIPT_PATH`
 
 RETVAL=0
 VERSION=8.3
-SUBVERSION=2
+SUBVERSION=20251227
 IMAGE="alpine_php_fpm"
 TAG=`date '+%Y%m%d_%H%M%S'`
 
 case "$1" in
 	
 	test)
-		DOCKER_BUILDKIT=0 docker build ./ -t bayrell/$IMAGE:$VERSION-$SUBVERSION-$TAG --file Dockerfile
+		DOCKER_BUILDKIT=0 docker build ./ -t bayrell/$IMAGE:$VERSION-$TAG --file Dockerfile
 	;;
 	
 	amd64)
@@ -158,6 +158,19 @@ case "$1" in
 		$0 arm64v8
 		$0 arm32v7
 		$0 manifest
+	;;
+	
+	getcomposer)
+		cd files/usr/bin
+
+		rm -f composer
+
+		php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+		php -r "if (hash_file('sha384', 'composer-setup.php') === 'c8b085408188070d5f52bcfe4ecfbee5f727afa458b2573b8eaaf77b3419b0bf2768dc67c86944da1544f06fa544fd47') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
+		php composer-setup.php
+		php -r "unlink('composer-setup.php');"
+
+		mv composer.phar composer
 	;;
 	
 	*)

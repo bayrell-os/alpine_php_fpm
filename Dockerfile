@@ -58,11 +58,8 @@ RUN cd ~; \
 	rm -f /etc/nginx/conf.d/default.conf; \
 	rm -f /etc/nginx/fastcgi.conf; \
 	mkdir -p /data; \
-	chmod +x /root/main.py; \
 	chmod +x /root/run.sh; \
-	chmod +x /root/entrypoint.sh; \
 	echo 'Ok'
 
 USER user
-ENTRYPOINT ["/root/entrypoint.sh"]
 CMD ["/root/run.sh"]

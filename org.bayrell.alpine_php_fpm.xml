@@ -2,11 +2,11 @@
 <template>
 	<uid>org.bayrell.alpine_php_fpm</uid>
 	<name>PHP-FPM alpine</name>
-	<version>8.3-2</version>
+	<version>8.3-20251227</version>
 	<branch>8.3</branch>
 	<maintainer>Ildar &lt;ildar@bayrell.org&gt;</maintainer>
 	<marketplace>https://cloud.bayrell.org/</marketplace>
-	<date>2024-11-11T22:38:07+06:00</date>
+	<date>2025-12-27T18:57:00+05:00</date>
 	<arch>amd64</arch>
 	<arch>arm64v8</arch>
 	<arch>arm32v7</arch>
@@ -16,7 +16,7 @@
 	<yaml>
 		<services>
 			<_var_app_name_>
-				<image>docker.io/bayrell/alpine_php_fpm:8.3-2</image>
+				<image>docker.io/bayrell/alpine_php_fpm:8.3-20251227</image>
 				<hostname>{{.Service.Name}}.{{.Task.ID}}.local</hostname>
 				<environment>
 					<WWW_UID>_var_www_uid_</WWW_UID>
@@ -41,13 +41,13 @@
 			<name>_var_www_uid_</name>
 			<label>www user id</label>
 			<type>string</type>
-			<default>800</default>
+			<default>1000</default>
 		</variable>
 		<variable>
 			<name>_var_www_gid_</name>
 			<label>www group id</label>
 			<type>string</type>
-			<default>800</default>
+			<default>1000</default>
 		</variable>
 		<variable>
 			<name>_var_folder_www_</name>
